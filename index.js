@@ -1,18 +1,18 @@
-function largestOfFour(arr) {
-    const res = [];
+function bouncer(arr) {
     for (let i = 0; i < arr.length; i++) {
-        let max = arr[i][0];
-        for (let j = 1; j < arr[i].length; j++) {
-            if (arr[i][j] > max) max = arr[i][j];
-
+        if (arr[i] == false || Number.isNaN(arr[i]) || arr[i] == undefined || arr[i] == null) {
+            for (let j = i; j < arr.length - 1; j++) {
+                arr[j] = arr[j + 1];
+            }
+            arr.pop();
+            i--;
         }
-        res[i] = max;
+
     }
-    return res
+    console.log(arr);
+    return arr;
 }
-largestOfFour([
-    [1, 2, 3, 4],
-    [5, 6, 7, 8],
-    [9, 7, 5],
-    [48, 2, -500]
-]);
+bouncer([7, "ate", "", false, 9]);
+bouncer(["a", "b", "c"]);
+bouncer([false, null, 0, NaN, undefined, ""]);
+bouncer([null, NaN, 1, 2, undefined]);
