@@ -1,18 +1,13 @@
-function bouncer(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] == false || Number.isNaN(arr[i]) || arr[i] == undefined || arr[i] == null) {
-            for (let j = i; j < arr.length - 1; j++) {
-                arr[j] = arr[j + 1];
-            }
-            arr.pop();
-            i--;
-        }
-
+function frankenSplice(arr1, arr2, n) {
+    let loc = arr2.slice();
+    for (let i = 0; i < arr2.length; i++) {
+        loc.splice(n, 0, arr1[i]);
+        n++
     }
-    console.log(arr);
-    return arr;
+    console.log(loc);
+    return loc;
 }
-bouncer([7, "ate", "", false, 9]);
-bouncer(["a", "b", "c"]);
-bouncer([false, null, 0, NaN, undefined, ""]);
-bouncer([null, NaN, 1, 2, undefined]);
+
+frankenSplice([1, 2, 3], [4, 5], 1);
+frankenSplice([1, 2], ["a", "b"], 1);
+frankenSplice([1, 2, 3, 4], [], 0);
