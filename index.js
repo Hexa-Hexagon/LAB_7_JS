@@ -1,13 +1,19 @@
-function frankenSplice(arr1, arr2, n) {
-    let loc = arr2.slice();
-    for (let i = 0; i < arr2.length; i++) {
-        loc.splice(n, 0, arr1[i]);
-        n++
+function getIndexToIns(arr, num) {
+    arr.push(num);
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] > arr[j]) arr[i] = [arr[j], arr[j] = arr[i]][0];
+        }
     }
-    console.log(loc);
-    return loc;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == num) {
+            console.log(i);
+            return i;
+        }
+    }
+    return num;
 }
-
-frankenSplice([1, 2, 3], [4, 5], 1);
-frankenSplice([1, 2], ["a", "b"], 1);
-frankenSplice([1, 2, 3, 4], [], 0);
+getIndexToIns([10, 20, 30, 40, 50], 35);
+getIndexToIns([10, 20, 30, 40, 50], 30);
+getIndexToIns([3, 10, 5], 3);
+getIndexToIns([5, 3, 20, 3], 5);
